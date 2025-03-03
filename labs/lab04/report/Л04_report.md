@@ -1,6 +1,6 @@
 ---
 ## Front matter
-title: "Отчет по лабораторной работе №3 "
+title: "Отчет по лабораторной работе №4 "
 subtitle: "Дисциплина архитектура компьютера"
 author: "Ахатов Эмиль Эрнстович"
 
@@ -68,121 +68,73 @@ header-includes:
 
 # Цель работы
 
-Научиться оформлять отчёты с помощью легковесного языка разметки Markdown
+Получение навыков правильной работы с репозиториями git.
 
 # Задание
 
-Сделайте отчёт по предыдущей лабораторной работе в формате Markdown.
-В качестве отчёта просьба предоставить отчёты в 3 форматах: pdf, docx и md (в архиве,
-поскольку он должен содержать скриншоты, Makefile и т.д.)
+Выполнить работу для тестового репозитория.
+Преобразовать рабочий репозиторий в репозиторий с git-flow и conventional commits.
 
 # Теоретическое введение
 
-Чтобы создать заголовок, используйте знак ( # ), например:
-1 # This is heading 1
-2 ## This is heading 2
-3 ### This is heading 3
-4 #### This is heading 4
-Чтобы задать для текста полужирное начертание, заключите его в двойные звездочки:
-1 This text is **bold**.
-Чтобы задать для текста курсивное начертание, заключите его в одинарные звездочки:
-1 This text is *italic*.
-Чтобы задать для текста полужирное и курсивное начертание, заключите его в тройные
-звездочки:
-1 This is text is both ***bold and italic***.
-Блоки цитирования создаются с помощью символа >:
-1 > The drought had lasted now for ten million years, and the reign of
-the terrible lizards had long since ended. Here on the Equator, in
-the continent which would one day be known as Africa, the battle
-for existence had reached a new climax of ferocity, and the victor
-was not yet in sight. In this barren and desiccated land, only the
-small or the swift or the fierce could flourish, or even hope to
-survive.
-↪
-↪
-↪
-↪
-↪
-↪
-Неупорядоченный (маркированный) список можно отформатировать с помощью звез-
-дочек или тире:
-1 - List item 1
-2 - List item 2
-3 - List item 3
-Чтобы вложить один список в другой, добавьте отступ для элементов дочернего списка:
-34 Лабораторная работа № 3. Markdown
-1 - List item 1
-2 - List item A
-3 - List item B
-4 - List item 2
-Упорядоченный список можно отформатировать с помощью соответствующих цифр:
-1 1. First instruction
-2 1. Second instruction
-3 1. Third instruction
-Чтобы вложить один список в другой, добавьте отступ для элементов дочернего списка:
-1 1. First instruction
-2 1. Sub-instruction
-3 1. Sub-instruction
-4 1. Second instruction
-Markdown поддерживает как встраивание фрагментов кода в предложение, так и их
-размещение между предложениями в виде отдельных огражденных блоков. Огражденные
-блоки кода — это простой способ выделить синтаксис для фрагментов кода. Общий
-формат огражденных блоков кода:
-1 ``` language
-2 your code goes in here
-3 ```
-записывается как
-1 H~2~O
-210
-записывается как
-1 2^10^
-3.2.2. Обработка файлов в формате Markdown
-Для обработки файлов в формате Markdown будем использовать Pandoc
-https://pandoc.org/. Конкретно, нам понадобится программа pandoc ,
-pandoc-citeproc https://github.com/jgm/pandoc/releases, pandoc-crossref
-https://github.com/lierdakil/pandoc-crossref/releases.
-Преобразовать файл README.md можно следующим образом:
-1 pandoc README.md -o README.pdf
-или так
-1 pandoc README.md -o README.docx
-Можно использовать следующий Makefile
-1 FILES = $(patsubst %.md, %.docx, $(wildcard *.md))
-2 FILES += $(patsubst %.md, %.pdf, $(wildcard *.md))
-3
-4 LATEX_FORMAT =
-5
-6 FILTER = --filter pandoc-crossref
-7
-8 %.docx: %.md
-9 -pandoc "$<" $(FILTER) -o "$@"
-10
-11 %.pdf: %.md
-12 -pandoc "$<" $(LATEX_FORMAT) $(FILTER) -o "$@"
-13
-14 all: $(FILES)
-15 @echo $(FILES)
-16
-17 clean:
-18 -rm $(FILES) *~
+Gitflow Workflow опубликована и популяризована Винсентом Дриссеном.
+Gitflow Workflow предполагает выстраивание строгой модели ветвления с учётом выпуска проекта.
+Данная модель отлично подходит для организации рабочего процесса на основе релизов.
+Работа по модели Gitflow включает создание отдельной ветки для исправлений ошибок в рабочей среде.
+Последовательность действий при работе по модели Gitflow:
+Из ветки master создаётся ветка develop.
+Из ветки develop создаётся ветка release.
+Из ветки develop создаются ветки feature.
+Когда работа над веткой feature завершена, она сливается с веткой develop.
+Когда работа над веткой релиза release завершена, она сливается в ветки develop и master.
+Если в master обнаружена проблема, из master создаётся ветка hotfix.
+Когда работа над веткой исправления hotfix завершена, она сливается в ветки develop и master.
+
 
 # Выполнение лабораторной работы
 
-открываю шаблон
+Устанавливаю из коллекции репозиториев
 
-![открытие шаблона](image/1.png){ #fig:001 width=70% }
+![Установка](image/1.png){ #fig:001 width=70% }
 
-Заполняю цель работы и задание
+![Установка](image/2.png){ #fig:002 width=70% }
 
-![цель работы и задание](image/2.png){ #fig:002 width=70% }
+Устанавливаю Node.js
 
-Заполняю основную часть вставляя скриншоты
+![Установка](image/3.png){ #fig:003 width=70% }
 
-![Основная часть](image/3.png){ #fig:003 width=70% }
+![Установка](image/4.png){ #fig:004 width=70% }
 
-создаю из мд файла докс и пдф
+Запускаю и перелогиниваюсь
 
-![создание](image/4.png){ #fig:004 width=70% }
+![Запуск](image/5.png){ #fig:005 width=70% }
+
+Прописываю pnpm init
+
+![конфигурация](image/6.png){ #fig:006 width=70% }
+
+изменяю файл
+
+![Изменение файла](image/7.png){ #fig:007 width=70% }
+
+Проверяю в какой я ветке
+
+![проверка ветки](image/11.png){ #fig:011 width=70% }
+
+обновляю пакет
+
+![обновление](image/12.png){ #fig:012 width=70% }
+
+создаю релиз
+
+![создание релиза](image/13.png){ #fig:013 width=70% }
+
+создаю журнал изменений добавляю его в индекс и заливаю ветку отправляю данные
+
+![отправка](image/14.png){ #fig:014 width=70% }
+
+далее я сделал все тоже самое для основного репозитория
 
 # Выводы
 
-Научился оформлять отчёты с помощью легковесного языка разметки Markdown
+я получил навыки правильной работы с репозиториями git.
