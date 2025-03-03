@@ -1,0 +1,134 @@
+<h2 id="цель-работы">Цель работы</h2>
+<p>Целью данной работы является приобретение практических навыков
+установки операционной системы на виртуальную машину, настройки
+минимально необходимых для дальнейшей работы сервисов.</p>
+<h2 id="задание">Задание</h2>
+<p>Установка виртуальной машины в virtualbox</p>
+<h2 id="создание-виртуальной-машины">Создание виртуальной машины</h2>
+<p>Создаю машину</p>
+<figure>
+<img src="image/1.png" id="fig:001" style="width:70.0%"
+alt="создание" />
+<figcaption aria-hidden="true">создание</figcaption>
+</figure>
+<h2 id="создание-виртуальной-машины-1">Создание виртуальной машины</h2>
+<p>Запускаю машину</p>
+<figure>
+<img src="image/2.png" id="fig:002" style="width:70.0%" alt="запуск" />
+<figcaption aria-hidden="true">запуск</figcaption>
+</figure>
+<h2 id="создание-виртуальной-машины-2">Создание виртуальной машины</h2>
+<p>Устанавливаю машину на диск</p>
+<figure>
+<img src="image/4.png" id="fig:004" style="width:70.0%"
+alt="установка" />
+<figcaption aria-hidden="true">установка</figcaption>
+</figure>
+<h2 id="после-установки">После установки</h2>
+<p>Устанавливаю средства разработки:</p>
+<p>sudo dnf -y group install development-tools</p>
+<p>Обновляю все пакеты</p>
+<p>sudo dnf -y update</p>
+<p>Программы для удобства работы в консоли:</p>
+<p>sudo dnf -y install tmux mc</p>
+<figure>
+<img src="image/5.png" id="fig:005" style="width:70.0%"
+alt="установка" />
+<figcaption aria-hidden="true">установка</figcaption>
+</figure>
+<h2 id="после-установки-1">После установки</h2>
+<p>Автоматическое обновление</p>
+<p>Установка программного обеспечения:</p>
+<p>sudo dnf -y install dnf-automatic</p>
+<figure>
+<img src="image/6.png" id="fig:006" style="width:70.0%"
+alt="установка" />
+<figcaption aria-hidden="true">установка</figcaption>
+</figure>
+<h2 id="настройка-машины">Настройка машины</h2>
+<p>Задаю необходимую конфигурацию в файле /etc/dnf/automatic.conf.</p>
+<p>sudo systemctl enable –now dnf-automatic.timer</p>
+<figure>
+<img src="image/7.png" id="fig:007" style="width:70.0%"
+alt="конфигурация" />
+<figcaption aria-hidden="true">конфигурация</figcaption>
+</figure>
+<h2 id="отключение-selinux">Отключение SELINUX</h2>
+<p>В файле /etc/selinux/config заменяю значение SELINUX=enforcing на
+значение SELINUX=permissive</p>
+<p>Перегружаю виртуальную машину:</p>
+<p>sudo systemctl reboot</p>
+<figure>
+<img src="image/8.png" id="fig:008" style="width:70.0%"
+alt="изменение конфигурации" />
+<figcaption aria-hidden="true">изменение конфигурации</figcaption>
+</figure>
+<h2 id="создание-конфигурационного-файла">Создание конфигурационного
+файла</h2>
+<p>Создаю конфигурационный файл
+~/.config/sway/config.d/95-system-keyboard-config.conf:</p>
+<p>mkdir -p ~/.config/sway touch
+~/.config/sway/config.d/95-system-keyboard-config.conf</p>
+<figure>
+<img src="image/9.png" id="fig:009" style="width:70.0%"
+alt="создание" />
+<figcaption aria-hidden="true">создание</figcaption>
+</figure>
+<h2 id="редактирование">Редактирование</h2>
+<p>редактирую конфигурационный файл
+~/.config/sway/config.d/95-system-keyboard-config.conf:</p>
+<figure>
+<img src="image/10.png" id="fig:010" style="width:70.0%"
+alt="редактирование" />
+<figcaption aria-hidden="true">редактирование</figcaption>
+</figure>
+<p>exec_always /usr/libexec/sway-systemd/locale1-xkb-config –oneshot</p>
+<h2 id="редактирование-1">Редактирование</h2>
+<p>Отредактировал конфигурационный файл
+/etc/X11/xorg.conf.d/00-keyboard.conf:</p>
+<p>Section “InputClass” Identifier “system-keyboard” MatchIsKeyboard
+“on” Option “XkbLayout” “us,ru” Option “XkbVariant” “,winkeys” Option
+“XkbOptions” “grp:rctrl_toggle,compose:ralt,terminate:ctrl_alt_bksp”
+EndSection</p>
+<figure>
+<img src="image/11.png" id="fig:011" style="width:70.0%"
+alt="редактирование" />
+<figcaption aria-hidden="true">редактирование</figcaption>
+</figure>
+<h2 id="установка-pandoc">установка pandoc</h2>
+<p>устанавливаю pandoc</p>
+<figure>
+<img src="image/12.png" id="fig:012" style="width:70.0%"
+alt="установка" />
+<figcaption aria-hidden="true">установка</figcaption>
+</figure>
+<h2 id="установка-texlive">установка texlive</h2>
+<p>устанавливаю texlive</p>
+<figure>
+<img src="image/13.png" id="fig:013" style="width:70.0%"
+alt="установка" />
+<figcaption aria-hidden="true">установка</figcaption>
+</figure>
+<h2 id="установка-texlive-1">установка texlive</h2>
+<figure>
+<img src="image/14.png" id="fig:014" style="width:70.0%"
+alt="установка" />
+<figcaption aria-hidden="true">установка</figcaption>
+</figure>
+<h2 id="установка-texlive-2">установка texlive</h2>
+<figure>
+<img src="image/15.png" id="fig:015" style="width:70.0%"
+alt="установка" />
+<figcaption aria-hidden="true">установка</figcaption>
+</figure>
+<h2 id="выполнение-задания">Выполнение задания</h2>
+<p>получаю всю информацию о системе</p>
+<figure>
+<img src="image/16.png" id="fig:016" style="width:70.0%"
+alt="получение информации" />
+<figcaption aria-hidden="true">получение информации</figcaption>
+</figure>
+<h2 id="выводы">Выводы</h2>
+<p>Я приобрел практические навыки установки операционной системы на
+виртуальную машину, настройки минимально необходимых для дальнейшей
+работы сервисов.</p>
