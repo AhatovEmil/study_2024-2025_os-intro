@@ -1,0 +1,117 @@
+<h2 id="цель-работы">Цель работы</h2>
+<p>Изучить идеологию и применение средств контроля версий. Освоить
+умения по работе с git.</p>
+<h2 id="задание">Задание</h2>
+<ol type="1">
+<li>Создать базовую конфигурацию для работы с git.</li>
+<li>Создать ключ SSH.</li>
+<li>Создать ключ PGP.</li>
+<li>Настроить подписи git.</li>
+<li>Зарегистрироваться на Github.</li>
+<li>Создать локальный каталог для выполнения заданий по предмету.</li>
+</ol>
+<h2 id="установка-git">установка git</h2>
+<p>Установливаю git: dnf install git</p>
+<figure>
+<img src="image/1.png" id="fig:001" style="width:70.0%"
+alt="установка" />
+<figcaption aria-hidden="true">установка</figcaption>
+</figure>
+<h2 id="установка-gh">установка gh</h2>
+<p>Устанавливаю gh: dnf install gh</p>
+<figure>
+<img src="image/2.png" id="fig:002" style="width:70.0%"
+alt="установка" />
+<figcaption aria-hidden="true">установка</figcaption>
+</figure>
+<h2 id="настройка-git">Настройка git</h2>
+<p>Базовая настройка git</p>
+<p>Зададаю имя и email для моего репозитория: git config –global
+user.name “Emil Ahatov” git config –global user.email
+“ahatovemil48@gmail” Настраиваю utf-8 в выводе сообщений git: git config
+–global core.quotepath false Настраиваю верификацию и подписание
+коммитов git Зададаю имя начальной ветки (будем называть её master): git
+config –global init.defaultBranch master Параметр autocrlf: git config
+–global core.autocrlf input Параметр safecrlf: git config –global
+core.safecrlf warn</p>
+<figure>
+<img src="image/3.png" id="fig:003" style="width:70.0%"
+alt="базовая настройка git" />
+<figcaption aria-hidden="true">базовая настройка git</figcaption>
+</figure>
+<h2 id="создание-ключей">Создание ключей</h2>
+<p>Создаю ключи ssh по алгоритму rsa с ключём размером 4096 бит:
+ssh-keygen -t rsa -b 4096 по алгоритму ed25519: ssh-keygen -t ed25519
+Создаю ключи pgp Генерируем ключ gpg –full-generate-key</p>
+<figure>
+<img src="image/4.png" id="fig:004" style="width:70.0%"
+alt="создание ключей" />
+<figcaption aria-hidden="true">создание ключей</figcaption>
+</figure>
+<h2 id="создание-ключей-1">Создание ключей</h2>
+<figure>
+<img src="image/5.png" id="fig:005" style="width:70.0%"
+alt="окно подтверждения" />
+<figcaption aria-hidden="true">окно подтверждения</figcaption>
+</figure>
+<h2 id="создание-ключей-2">Создание ключей</h2>
+<figure>
+<img src="image/6.png" id="fig:006" style="width:70.0%" alt="ключ" />
+<figcaption aria-hidden="true">ключ</figcaption>
+</figure>
+<h2 id="добавление-ключей">Добавление ключей</h2>
+<p>Выводим список ключей и копируем отпечаток приватного
+ключа.Cкопировал сгенерированный PGP ключ в буфер обмена:</p>
+<p>gpg –armor –export <PGP Fingerprint> | xclip -sel clip</p>
+<p>Перехожу в настройки GitHub , нажмимаю на кнопку New GPG key и
+вставьте полученный ключ в поле ввода.</p>
+<figure>
+<img src="image/7.png" id="fig:007" style="width:70.0%"
+alt="копирование ключа" />
+<figcaption aria-hidden="true">копирование ключа</figcaption>
+</figure>
+<h2 id="создание-ключей-3">Создание ключей</h2>
+<figure>
+<img src="image/8.png" id="fig:008" style="width:70.0%"
+alt="добавление ключа" />
+<figcaption aria-hidden="true">добавление ключа</figcaption>
+</figure>
+<h2 id="авторизация">авторизация</h2>
+<p>Авторизуюсь через браузер</p>
+<figure>
+<img src="image/9.png" id="fig:009" style="width:70.0%"
+alt="авторизация" />
+<figcaption aria-hidden="true">авторизация</figcaption>
+</figure>
+<h2 id="создание-репозитория">Создание репозитория</h2>
+<p>создание репозитория курса на основе шаблона прописываю комнды для
+создания репозитория:</p>
+<p>mkdir -p ~/work/study/2022-2023/“Операционные системы” cd
+~/work/study/2022-2023/“Операционные системы” gh repo create
+study_2022-2023_os-intro
+–template=yamadharma/course-directory-student-template –public git clone
+–recursive git@github.com:<owner>/study_2024-2025_os-intro.git
+os-intro</p>
+<figure>
+<img src="image/10.png" id="fig:010" style="width:70.0%"
+alt="создание репозитория" />
+<figcaption aria-hidden="true">создание репозитория</figcaption>
+</figure>
+<h2 id="настройка-каталога-курса">Настройка каталога курса</h2>
+<p>Перехожу в каталог курса:</p>
+<p>cd ~/work/study/2022-2023/“Операционные системы”/os-intro</p>
+<p>Удаляю лишние файлы:</p>
+<p>rm package.json</p>
+<p>Создаю необходимые каталоги:</p>
+<p>echo os-intro &gt; COURSE make</p>
+<p>Отправляю файлы на сервер:</p>
+<p>git add . git commit -am ‘feat(main): make course structure’ git
+push</p>
+<figure>
+<img src="image/11.png" id="fig:011" style="width:70.0%"
+alt="отправка на сервер" />
+<figcaption aria-hidden="true">отправка на сервер</figcaption>
+</figure>
+<h2 id="выводы">Выводы</h2>
+<p>Я изучил идеологию и применение средств контроля версий. Освоил
+умения по работе с git.</p>
